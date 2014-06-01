@@ -3,6 +3,8 @@ Configuration local to the user's computer goes here, to avoid constant conflict
 
 i.e. data directory locations are here.  Edit this file to your local location.
 
+Selected data files are shared via Google drive.
+
 If you don't want to update this file every time you synchronize your code, do this:
     git update-index --assume-unchanged conf.py
 
