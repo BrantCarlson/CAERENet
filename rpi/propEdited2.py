@@ -150,7 +150,7 @@ def talkingtoProp(valuesfromprop):
 
                 runcount = runcount + 1
 
-                if runcount > 15:
+                if runcount >= 15:
                         running = False
                 
         if running == False: #GUI will send command to change running status?
