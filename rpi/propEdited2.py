@@ -91,15 +91,6 @@ def talkingtoProp(valuesfromprop):
         writing = False #wait for interesting data
         
         while running == True:
-
-##                wait = 0
-##
-##                while wait != 7:
-##                        wait = IO16(7)
-##                        print wait
-##
-##                IO16(36)
-##                IO16(36)
                 
                 IO16(1)         #give command to Prop to send maxs and mins
 
@@ -158,15 +149,6 @@ def talkingtoProp(valuesfromprop):
                 print 'whatup'
 
                 runcount = runcount + 1
-
-##                wait = 0
-##
-##                while wait != 7:
-##                        wait = IO16(7)
-##                        print wait
-##
-##                IO16(36)
-##                IO16(36)
 
                 if runcount > 15:
                         running = False
