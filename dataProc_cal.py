@@ -158,7 +158,40 @@ def fitSegs(t1,a1,t2,a2,seglen=340): #340 comes from (1024 - 2) / 3
 
     return pd.DataFrame(p,columns=['t','m1','a1','omega','t0','m2','a2','mma1','mmm1','mma2','mmm2'])
 
-def procBigFile(filename,c1,c2,bufsize=1024):
+def fitSegs_qnd(t1,a1,t2,a2,segLen=340):
+    n = t1.shape[0]
+    nseg = n/segLen
+    p = np.zeros((nseg,6+4+1)) # 6 parameters from 2-channel fit, 4 from 2-channel minmax amp and midpt, and 1 for time
+
+    for i in xrange(nseg):
+        tmin = t1[i*segLen]
+        tmax = t1[min((i+1)*segLen-1,n)]
+        p[i,0] = tmin
+        if(tmax-tmin > (segLen/10000.0)*2): #if this chunk of data contains a big glitch,
+            p[i,1:] = np.nan
+            continue
+
+        m1 = np.logical_and(t1>tmin,t1<tmax)
+        ts1 = t1[m1]
+        as1 = a1[m1]
+
+        m2 = np.logical_and(t2>tmin,t2<tmax)
+        ts2 = t2[m2]
+        as2 = a2[m2]
+
+        p[i,1] = np.min(as1)
+        p[i,2] = np.max(as1)
+        p[i,3] = p[i,2]-p[i,1]
+        p[i,4] = np.var(as1)
+        p[i,5] = np.min(as2)
+        p[i,6] = np.max(as2)
+        p[i,7] = p[i,6]-p[i,5]
+        p[i,8] = np.var(as2)
+
+    return pd.DataFrame(p,columns=['t','min1','max1','mmm1','var1','min2','max2','mmm2','var2'])
+
+def procBigFile(filename,c1,c2,bufsize=1024,func=fitSegs):
+    """use fitSegs_qnd for method if desired."""
     num_ints = os.stat(filename).st_size/4
     nb = num_ints/bufsize
     nbp = 1024*3
@@ -167,9 +200,8 @@ def procBigFile(filename,c1,c2,bufsize=1024):
     for i in xrange(0,nb,nbp):
         print "processing %d of %d, %f"%(i,nb,t0)
         x = readData(filename,nbp*bufsize,i*bufsize,bufsize)
-        p2 = fitSegs(x[c1].t,x[c1].adc,x[c2].t,x[c2].adc)
+        p2 = func(x[c1].t,x[c1].adc,x[c2].t,x[c2].adc)
         p2.t = p2.t+t0
         p = pd.concat([p,p2])
         t0 = max(p2.t)  # NOTE: mistake here. proper time difference between buffers should be calculated, not fudged.
     return p
-
