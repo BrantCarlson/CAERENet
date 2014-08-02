@@ -1,3 +1,4 @@
+# code for min/max communication with prop.spin
 import RPi.GPIO as GPIO
 import numpy as np
 

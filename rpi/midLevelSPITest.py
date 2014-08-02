@@ -1,3 +1,4 @@
+# medium-level GPIO pseudo-SPI code
 
 import RPi.GPIO as GPIO
 import numpy as np
