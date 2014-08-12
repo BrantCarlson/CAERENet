@@ -19,9 +19,9 @@ int main (void)
   for (;;)
   {
     digitalWrite (0, 1) ;       // On
-    delay (500) ;               // mS
+    delay (2000) ;               // mS
     digitalWrite (0, 0) ;       // Off
-    delay (500) ;
+    delay (2000) ;
   }
   return 0 ;
 }
