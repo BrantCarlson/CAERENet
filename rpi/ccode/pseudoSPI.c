@@ -44,6 +44,20 @@ int io1(int send){
   }
 
   in = digitalRead(MISO);
+
+  return in;
+}
+
+int io16(int send){
+  int i=0;
+  int in=0;
+  
+  for(i=0; i<16; ++i){
+    in = in | (io1(send & 1) << i);
+    send = send >> 1;
+  }
+
+  return in;
 }
 
 int main(void){
@@ -58,7 +72,6 @@ int main(void){
     printf("sending 0...\n");
     x = io1(0);
     printf("sent 0, got %d.\n",x);
-
   }
 
   shutdown();
