@@ -12,7 +12,7 @@ LOAD = /opt/parallax/bin/propeller-load
 
 SPINFLAGS = -Ogxr
 
-SOURCE = prop.spin
+SOURCE = fsrw_test.spin
 EXECUTABLE = $(SOURCE:.spin=.binary)
 
 all: $(EXECUTABLE)
