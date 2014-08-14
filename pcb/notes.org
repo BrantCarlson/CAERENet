@@ -1,0 +1,6 @@
+* todo list
+- footprint of 5-pin header block on shield won't accommodate normal pins -- doublecheck footprint.
+  
+* activity log
+- switched ground and +5V nets on 40-pin block to properly match Propeller QuickStart board
+- added component values to shield to re-establish link between board and schematic
