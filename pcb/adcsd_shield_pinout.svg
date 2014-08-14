@@ -29,9 +29,9 @@
      inkscape:window-height="1012"
      id="namedview4"
      showgrid="false"
-     inkscape:zoom="1.5930998"
-     inkscape:cx="336.97012"
-     inkscape:cy="165.28181"
+     inkscape:zoom="3.1861996"
+     inkscape:cx="422.79479"
+     inkscape:cy="244.33208"
      inkscape:window-x="0"
      inkscape:window-y="44"
      inkscape:window-maximized="0"
@@ -312,46 +312,46 @@
      xml:space="preserve"
      style="font-size:12px;font-style:normal;font-weight:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#ff8000;fill-opacity:1;stroke:none;font-family:Sans"
      x="183.93207"
-     y="193.05655"
+     y="208.59151"
      id="text4357"
      sodipodi:linespacing="125%"><tspan
        sodipodi:role="line"
        id="tspan4359"
        x="183.93207"
-       y="193.05655">1</tspan></text>
+       y="208.59151">1</tspan></text>
   <text
      xml:space="preserve"
      style="font-size:12px;font-style:normal;font-weight:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#ff8000;fill-opacity:1;stroke:none;font-family:Sans"
      x="183.93207"
-     y="207.80768"
+     y="194.71393"
      id="text4361"
      sodipodi:linespacing="125%"><tspan
        sodipodi:role="line"
        id="tspan4363"
        x="183.93207"
-       y="207.80768">2</tspan></text>
+       y="194.71393">2</tspan></text>
   <text
      xml:space="preserve"
      style="font-size:12px;font-style:normal;font-weight:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#ff8000;fill-opacity:1;stroke:none;font-family:Sans"
      x="272.43878"
-     y="193.05655"
+     y="208.59151"
      id="text4365"
      sodipodi:linespacing="125%"><tspan
        sodipodi:role="line"
        id="tspan4367"
        x="272.43878"
-       y="193.05655">11</tspan></text>
+       y="208.59151">11</tspan></text>
   <text
      xml:space="preserve"
      style="font-size:12px;font-style:normal;font-weight:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#ff8000;fill-opacity:1;stroke:none;font-family:Sans"
      x="272.43878"
-     y="207.80768"
+     y="194.71393"
      id="text4369"
      sodipodi:linespacing="125%"><tspan
        sodipodi:role="line"
        id="tspan4371"
        x="272.43878"
-       y="207.80768">12</tspan></text>
+       y="194.71393">12</tspan></text>
   <text
      xml:space="preserve"
      style="font-size:8px;font-style:normal;font-weight:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#ff8000;fill-opacity:1;stroke:none;font-family:Sans"
@@ -529,42 +529,52 @@
        id="tspan4554"
        x="506.57352"
        y="33.932831"
-       style="font-size:10px">Prop 20 = WP</tspan><tspan
+       style="font-size:10px">Prop 20 = CD</tspan><tspan
        sodipodi:role="line"
        x="506.57352"
        y="46.432831"
        id="tspan4556"
-       style="font-size:10px">Prop 21 = CD</tspan><tspan
+       style="font-size:10px">Prop 21 = WP</tspan><tspan
        sodipodi:role="line"
        x="506.57352"
        y="58.932831"
        id="tspan4558"
-       style="font-size:10px">Prop 22 = IRQ</tspan><tspan
+       style="font-size:10px">Prop 22 = DO*</tspan><tspan
        sodipodi:role="line"
        x="506.57352"
        y="71.432831"
        id="tspan4560"
-       style="font-size:10px">Prop 23 = DO</tspan><tspan
+       style="font-size:10px">Prop 23 = IRQ</tspan><tspan
        sodipodi:role="line"
        x="506.57352"
        y="83.932831"
        id="tspan4562"
-       style="font-size:10px">Prop 24 = DI</tspan><tspan
+       style="font-size:10px">Prop 24 = SCLK*</tspan><tspan
        sodipodi:role="line"
        x="506.57352"
        y="96.432831"
        id="tspan4564"
-       style="font-size:10px">Prop 25 = SCLK</tspan><tspan
+       style="font-size:10px">Prop 25 = DI*</tspan><tspan
        sodipodi:role="line"
        x="506.57352"
        y="108.93283"
        id="tspan4566"
-       style="font-size:10px">Prop 26 = RW</tspan><tspan
+       style="font-size:10px">Prop 26 = CS*</tspan><tspan
        sodipodi:role="line"
        x="506.57352"
        y="121.43283"
        id="tspan4568"
-       style="font-size:10px">Prop 27 = CS</tspan></text>
+       style="font-size:10px">Prop 27 = RW</tspan><tspan
+       sodipodi:role="line"
+       x="506.57352"
+       y="133.93283"
+       style="font-size:10px"
+       id="tspan3082">*: necessary for FSRW SPI</tspan><tspan
+       sodipodi:role="line"
+       x="506.57352"
+       y="146.43283"
+       style="font-size:10px"
+       id="tspan3083">    (all others are optional)</tspan></text>
   <text
      xml:space="preserve"
      style="font-size:10px;font-style:normal;font-weight:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
@@ -580,11 +590,11 @@
        sodipodi:role="line"
        x="106.89375"
        y="288.59143"
-       id="tspan4613">Quickstart header 14, 16, 18</tspan><tspan
+       id="tspan4613">Quickstart header 13, 15, 17</tspan><tspan
        sodipodi:role="line"
        x="106.89375"
        y="301.09143"
-       id="tspan4615">(Propeller pins 13, 15, 17)</tspan></text>
+       id="tspan4615">(Propeller pins 12, 14, 16)</tspan></text>
   <text
      xml:space="preserve"
      style="font-size:12px;font-style:normal;font-weight:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
@@ -649,4 +659,26 @@
        x="1.8831214"
        y="26.335369"
        id="tspan4686">should be useful for pin assignments in propeller code</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-size:8px;font-style:normal;font-weight:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#00ffff;fill-opacity:1;stroke:none;font-family:Sans"
+     x="195.51852"
+     y="175.77148"
+     id="text3084"
+     sodipodi:linespacing="125%"><tspan
+       sodipodi:role="line"
+       id="tspan3086"
+       x="195.51852"
+       y="175.77148">1    3    5   7   9   11  13 15 17 19  21  23 25  27 29  31 33  35 37  39</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-size:8px;font-style:normal;font-weight:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#00ffff;fill-opacity:1;stroke:none;font-family:Sans"
+     x="195.51852"
+     y="164.45316"
+     id="text3084-3"
+     sodipodi:linespacing="125%"><tspan
+       sodipodi:role="line"
+       id="tspan3086-9"
+       x="195.51852"
+       y="164.45316">2    4    6   8  10  12  14 16 18 20  22  24 26  28 30  32 34  36 38  40</tspan></text>
 </svg>
