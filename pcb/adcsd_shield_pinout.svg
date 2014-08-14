@@ -30,8 +30,8 @@
      id="namedview4"
      showgrid="false"
      inkscape:zoom="3.1861996"
-     inkscape:cx="422.79479"
-     inkscape:cy="244.33208"
+     inkscape:cx="297.25337"
+     inkscape:cy="231.77794"
      inkscape:window-x="0"
      inkscape:window-y="44"
      inkscape:window-maximized="0"
@@ -606,17 +606,17 @@
        id="tspan4619"
        x="182.99054"
        y="58.099533"
-       style="font-size:10px">Prop 13 = CLK</tspan><tspan
+       style="font-size:10px">Prop 12 = CLK</tspan><tspan
        sodipodi:role="line"
        x="182.99054"
        y="70.599533"
        id="tspan4621"
-       style="font-size:10px">Prop 15 = DIN, DOUT</tspan><tspan
+       style="font-size:10px">Prop 14 = DIN, DOUT</tspan><tspan
        sodipodi:role="line"
        x="182.99054"
        y="83.099533"
        id="tspan4623"
-       style="font-size:10px">Prop 17 = !CS/SHDN</tspan></text>
+       style="font-size:10px">Prop 16 = !CS/SHDN</tspan></text>
   <path
      sodipodi:nodetypes="ccc"
      inkscape:connector-curvature="0"
