@@ -52,7 +52,10 @@ def IO16(dataout):
 
 def runMe():
     setup()
-    out = 10
-    for i in xrange(16):
+    out = 15
+    for i in xrange(10000):
         inp = IO16(out)
+        #print("sent",out,"got",inp)
     shutdown()
+
+runMe()
