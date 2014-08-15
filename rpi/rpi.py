@@ -2,10 +2,10 @@
 import RPi.GPIO as GPIO
 import numpy as np
 
-mclk = 7
 mosi = 11
-sclk = 13
-miso = 15
+miso = 12
+mclk = 13
+sclk = 15
 
 def setup():
     GPIO.setmode(GPIO.BOARD)
