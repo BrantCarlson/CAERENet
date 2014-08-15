@@ -3,3 +3,6 @@ test: test.c
 
 pseudoSPI: pseudoSPI.c
 	gcc pseudoSPI.c -lwiringPi -o pseudoSPI
+
+pseudoSPI_test: pseudoSPI_test.c
+	gcc pseudoSPI.c -lwiringPi -o pseudoSPI
