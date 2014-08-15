@@ -151,3 +151,5 @@ def runMe():
     setup()
     talkingtoProp(50)
     shutdown()
+
+runMe()
