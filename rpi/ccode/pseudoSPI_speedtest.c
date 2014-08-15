@@ -66,10 +66,9 @@ int main(void){
   setup();
 
   printf("starting up...\n");
-  for(i=0; i<10; ++i){
-    out = 15;
+  out = 15;
+  for(i=0; i<10000; ++i){
     in = io16(out);
-    printf("sent %d, got %d\n",out,in);
   }
   printf("finished!\n");
 
