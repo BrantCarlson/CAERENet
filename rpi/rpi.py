@@ -2,6 +2,9 @@
 import RPi.GPIO as GPIO
 import numpy as np
 
+# communications pins
+# note that since the GPIO init is called with GPIO.BOARD mode,
+# these pin numbers correspond to the header on the physical RPi board.
 mosi = 11
 miso = 12
 mclk = 13

@@ -30,4 +30,4 @@ loadsave: $(EXECUTABLE)
 	sudo $(LOAD) -r -b c3 -e $(EXECUTABLE)
 
 clean:
-	rm -rf *.binary
+	rm -f *.binary

@@ -1,6 +1,10 @@
 #include <stdio.h>
 #include <wiringPi.h>
 
+// communications pins
+// note that with wiringPi, these DO NOT correspond to the header on
+// the physical RPi board.  Instead, the correspond to pins 11, 12, 13, and 15
+// on the physical board.  See the output of the command "gpio readall" for details.
 #define MCLK 0
 #define SCLK 1
 #define MOSI 2
@@ -16,6 +20,8 @@ void setup(){
   pinMode(SCLK, INPUT);
   pinMode(MOSI, OUTPUT);
   pinMode(MISO, INPUT);
+
+  digitalWrite(MCLK,0);
 }
 
 void shutdown(){
