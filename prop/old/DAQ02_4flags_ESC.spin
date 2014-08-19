@@ -1,4 +1,4 @@
-﻿CON
+CON
 
 {{
 Carthage Field Mill project summer 2013

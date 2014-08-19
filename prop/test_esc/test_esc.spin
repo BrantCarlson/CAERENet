@@ -1,4 +1,4 @@
-﻿CON
+CON
 
 {{
 Servor / ESC control test code.

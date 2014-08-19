@@ -1,4 +1,4 @@
-﻿CON
+CON
 
 {{
 Use DAQ02:4flags:esc

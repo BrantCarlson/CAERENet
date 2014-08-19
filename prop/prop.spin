@@ -1,4 +1,4 @@
-﻿CON
+CON
 
 {{
 Carthage Field Mill Code Summer 2014

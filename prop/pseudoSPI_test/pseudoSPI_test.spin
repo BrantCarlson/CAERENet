@@ -1,4 +1,4 @@
-﻿CON
+CON
 
 {{
 pseudo-SPI test code

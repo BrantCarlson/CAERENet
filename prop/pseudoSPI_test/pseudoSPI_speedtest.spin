@@ -1,4 +1,4 @@
-﻿CON
+CON
 
 {{
 pseudo-SPI speed test code

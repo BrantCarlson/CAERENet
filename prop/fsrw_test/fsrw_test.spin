@@ -1,4 +1,4 @@
-﻿CON
+CON
 
 {{
 FSRW test code for ADC/SD shield.  see pinout in pcb directory.

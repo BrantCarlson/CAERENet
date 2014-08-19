@@ -1,4 +1,4 @@
-﻿CON
+CON
 
 {{
 This is a basic program that can be used to talk to the raspberry pi. just an example on how it can be done It sends and receives

@@ -1,4 +1,4 @@
-﻿''*****************************************************
+''*****************************************************
 ''*  MCP3208 12-bit/8-channel ADC Driver v1.0         *
 ''*  also provides up to two 12-bit sigma-delta DACs  *
 ''*  Author: Chip Gracey                              *

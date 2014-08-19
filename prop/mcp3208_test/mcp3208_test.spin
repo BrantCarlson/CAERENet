@@ -1,4 +1,4 @@
-﻿CON
+CON
 
 {{
 MCP3208 ADC test for ADC/SD shield
