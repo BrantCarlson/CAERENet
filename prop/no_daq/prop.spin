@@ -22,11 +22,6 @@ no data is collected by this program, as appropriate for basic preamp sanity che
   'ESC control PWM pin (see assembly code at bottom)
   Servo_Pin = 1
 
-  'CONSTANTS FOR FLAGS AND BUFFERS
-  'flags for running and shutdown
-  _running = 6   ' 
-  _shutdown = 7
-
 OBJ
   pst : "Parallax Serial Terminal"  ' debugging via USB cable to serial terminal
   
@@ -53,7 +48,8 @@ PUB main
 
   waitcnt(2*clkfreq + cnt)  ' wait 5 seconds for PST startup on computer
 
-  speed := 84_800  'starts ESC, 86857=1500rpm
+  'speed := 84_800  'starts ESC, 86857=1500rpm
+  speed := 86857  'starts ESC, 86857=1500rpm
 
   pst.str(string("startup completed"))
   pst.str(string(13,10))
