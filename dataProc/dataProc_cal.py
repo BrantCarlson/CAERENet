@@ -5,12 +5,20 @@ import scipy.optimize as op
 import matplotlib.pyplot as plt
 from scipy.interpolate import interp1d
 
-def readArray(filename,num_ints=np.inf,start_int=0):
+def readArray32(filename,num_ints=np.inf,start_int=0):
     """Read an array of nothing but 32-bit integers using numpy's fromfile function."""
     num_ints = min(os.stat(filename).st_size/4-start_int,num_ints)
     with open(filename,'r') as f:
         f.seek(start_int*4)
         x = np.fromfile(f,np.uint32,num_ints)
+    return x
+
+def readArray(filename,num_ints=np.inf,start_int=0):
+    """Read an array of nothing but 16-bit unsigned integers using numpy's fromfile function."""
+    num_ints = min(os.stat(filename).st_size/2-start_int,num_ints)
+    with open(filename,'r') as f:
+        f.seek(start_int*2)
+        x = np.fromfile(f,np.uint16,num_ints)
     return x
 
 def splitData(x,b=1024):
