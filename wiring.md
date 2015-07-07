@@ -21,11 +21,23 @@ Prop/ADC/SD
 The Propellor needs +5 and ground
 the ADC needs +5 and another ground (i.e. analog ground, different from the propellor).
 
-Todo:
+FINISH ASSEMBLY Todo:
 - work out pin numbers for ESC control
 - work out what to do with battery eliminator circuit from ESC
 - work out what do do with power supply for the ADC, analog ground.
 - double-check the rest of the pin numbers.
 - write detailed documentation (with images?) for board pinouts and wiring i.e. finish this document).
+- work out pinouts for connectors overall
+- work out grounding for circuit overall
+- solder connectors onto ESC wires
+- work out wiring harness.
+- work out wiring for photogate
+- work out power for photogate
+- work out mounting for ESC
+- make cables for connection to power supply
+- revise code to work without RPi connected
+- program propeller
 
+GET ENSEMBLE WORKING Todo:
 
+TAKE TEST DATA
