@@ -3,3 +3,14 @@
 
 # ignore ipython checkpoints
 .ipynb_checkpoints/
+
+# ignore .binary files (compiled spin code)
+*.binary
+
+# ignore eagle backup files
+*.b##
+*.b#1
+*.b#2
+*.s##
+*.s#1
+*.s#2
