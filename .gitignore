@@ -14,3 +14,7 @@
 *.s##
 *.s#1
 *.s#2
+
+# ignore freecad backup files
+*.fcstd1
+*.FCStd1
