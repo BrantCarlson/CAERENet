@@ -39,10 +39,11 @@ This program:
   IndicatorLED = 23
 
   'ESC control PWM pin (see assembly code at bottom)
+  ' this block of pins is contiguous on the header on the ADC/SD board, so just plug the 3-pin connector
+  ' from the ESC to these 3 pins on the ADC/SD board header, with the white wire on pin 1.
   Servo_Pin = 1
   BEC_Plus  = 3 'Battery eliminator circuit power supply.  not used, but should be set to input (high impedance)
   BEC_Minus = 5 'Battery eliminator circuit power supply.  not used, but should be set to input (high impedance)
-
 
   'CONSTANTS FOR FLAGS AND BUFFERS
   'buffer size
