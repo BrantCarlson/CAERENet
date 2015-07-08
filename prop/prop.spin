@@ -40,6 +40,8 @@ This program:
 
   'ESC control PWM pin (see assembly code at bottom)
   Servo_Pin = 1
+  BEC_Plus  = 3 'Battery eliminator circuit power supply.  not used, but should be set to input (high impedance)
+  BEC_Minus = 5 'Battery eliminator circuit power supply.  not used, but should be set to input (high impedance)
 
 
   'CONSTANTS FOR FLAGS AND BUFFERS
@@ -103,6 +105,9 @@ PUB main
   ' shutdown code called elsewhere
 
 PUB Startup | insert_card
+  dira[Servo_Pin] := %1  'this is also done by the servo assembly language block, below
+  dira[BEC_Plus] := %0   'this (and the line below) should be done automatically,
+  dira[BEC_Minus] := %0  'so this is a bit paranoid, but whatever.
 
   dira[IndicatorLED] := %1  'set indicator LED pin as output
   outa[IndicatorLED] := %1  ' and turn the LED on
