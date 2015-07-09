@@ -34,7 +34,9 @@ Output from the photogate needs to go to ADC channel 0.
 Grounding
 ---------
 
-All ground wires will be joined together at a star ground which will be wired to the case by soldering to the lock-washer at the main power connector.  Or should I use the signal entry point?  It shouldn't matter much, but it's worth checking either way.
+All ground points will be wired to a star ground which will be wired to the case by soldering to the lock-washer at the signal entry point.
+
+4 things will need to be connected to the star ground: preamp ground (female on board), propeller ground (male on board), ADC analog ground (male on board), ESC input ground (banana).  Will need at least 4 pins at the star ground, and will need 4 wires to connect to those pins, 3 with female on one end and male and female on the other, one with female on one end and some sort of banana plug connector on the other (solder this one directly to the black wire at ESC input.
 
 
 Overall connector pinouts
