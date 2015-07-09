@@ -1,4 +1,4 @@
-Wiring 
+Wiring
 ======
 
 This document describes the wiring necessary to assemble the CAERENet field mill.
@@ -24,20 +24,46 @@ The SD card needs 3.3V and ground, but the , but the ADC/SD card board has a 3.3
 the ADC needs +5 (also from the prop/SD card)
 the ADC also needs another ground (i.e. analog ground, different from the propellor).
 
+Photogate
+---------
+
+The photogate needs +5 and ground from digital power supply, connected to propeller board?
+
+Output from the photogate needs to go to ADC channel 0.
+
+Grounding
+---------
+
+All ground wires will be joined together at a star ground which will be wired to the case by soldering to the lock-washer at the main power connector.  Or should I use the signal entry point?  It shouldn't matter much, but it's worth checking either way.
+
+
+Overall connector pinouts
+=================
+3-pin connector for signal input
+- pin 1: red wire inside box, one channel
+- pin 2: blue wire inside box, another channel
+- pin 3: unused.
+
+12-pin connector for everything else
+- pin 1: +12V for preamp
+- pin 2: gnd for preamp
+- pin 3: -12V for preamp
+
+- pin 4: +5V for prop
+- pin 5: gnd for prop
+
+- pin 6: MCLK
+- pin 7: MOSI
+- pin 8: [unused]
+- pin 9: MISO
+- pin 10: SCLK
+
+- pin 11: +12V for ESC
+- pin 12: gnd for ESC
 
 
 
 FINISH ASSEMBLY Todo:
-- work out pinouts for connectors overall
-- work out grounding for circuit overall
-- work out wiring harness.
-- work out wiring for photogate
-- work out power for photogate
-- work out mounting for ESC
 - make cables for connection to power supply
 - revise code to work without RPi connected
 - program propeller
-
-GET ENSEMBLE WORKING Todo:
-
-TAKE TEST DATA
