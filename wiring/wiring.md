@@ -19,17 +19,17 @@ Prop/ADC/SD
 -----------
 
 The Propellor needs +5 and ground
-the ADC needs +5 and another ground (i.e. analog ground, different from the propellor).
+The SD card needs 3.3V and ground, but the , but the ADC/SD card board has a 3.3V regulator that takes care of that, so it can run off the same +5 digital power supply.
+
+the ADC needs +5 (also from the prop/SD card)
+the ADC also needs another ground (i.e. analog ground, different from the propellor).
+
+
+
 
 FINISH ASSEMBLY Todo:
-- work out pin numbers for ESC control
-- work out what to do with battery eliminator circuit from ESC
-- work out what do do with power supply for the ADC, analog ground.
-- double-check the rest of the pin numbers.
-- write detailed documentation (with images?) for board pinouts and wiring i.e. finish this document).
 - work out pinouts for connectors overall
 - work out grounding for circuit overall
-- solder connectors onto ESC wires
 - work out wiring harness.
 - work out wiring for photogate
 - work out power for photogate
