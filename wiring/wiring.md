@@ -63,6 +63,19 @@ Overall connector pinouts
 - pin 11: +12V for ESC
 - pin 12: gnd for ESC
 
+Wiring to 12-pin connector with Belkden M 9536 cable (7 wires, no SPI)
+- pin 1: red
+- pin 2: unshielded
+- pin 3: green
+- pin 4: brown
+- pin 5: blue
+- pin 6: -
+- pin 7: -
+- pin 8: -
+- pin 9: -
+- pin 10: -
+- pin 11: white
+- pin 12: black
 
 
 FINISH ASSEMBLY Todo:
