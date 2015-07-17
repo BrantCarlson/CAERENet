@@ -8,7 +8,7 @@ endif
 SC = /home/brant/software/prop/bstc.linux
 #SC = /opt/parallax/bin/bstc.linux
 
-LOAD = /opt/parallax/bin/propeller-load
+LOAD = /home/brant/software/prop/simpleide/opt/parallax/bin/propeller-load
 
 SPINFLAGS = -Ogxr
 

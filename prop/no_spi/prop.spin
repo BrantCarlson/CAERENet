@@ -31,6 +31,7 @@ No SPI communication in this one.
   SD_CS = 26
 
   'pseudo-spi pins (see pcb/adcsd_shield_pinout.svg)
+  ' UNUSED in this version
   SPI_MOSI = 0  ' master out slave in
   SPI_MISO = 2  ' master in slave out
   SPI_MCLK = 4  ' master clock
