@@ -21,7 +21,7 @@ $(EXECUTABLE): $(SOURCE)
 	$(SC) $(SPINFLAGS) -b $@
 
 load: $(EXECUTABLE)
-	sudo $(LOAD) -r -b c3 $(EXECUTABLE)
+	sudo $(LOAD) -r -b c3 $(EXECUTABLE) # works for propeller-load
 
 loadterm: $(EXECUTABLE) #only works for propeller-load?
 	xterm -e "sudo $(LOAD) -r -b c3 -t $(EXECUTABLE); zsh"
