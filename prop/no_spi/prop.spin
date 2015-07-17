@@ -18,7 +18,7 @@ No SPI communication in this one.
   'PIN ASSIGNMENTS
   'Note: Pin values in this document refer to propeller pin numbers, starting from 0.
   '      Pin values as listed on the QuickStart board start from 1, see QuickStart board docs.
-  
+
   'adc pins for ADC/SD shield (see pcb/adcsd_shield_pinout.svg)
   ADC_DPIN =  14
   ADC_SPIN =  16
@@ -40,8 +40,11 @@ No SPI communication in this one.
   IndicatorLED = 23
 
   'ESC control PWM pin (see assembly code at bottom)
+  ' this block of pins is contiguous on the header on the ADC/SD board, so just plug the 3-pin connector
+  ' from the ESC to these 3 pins on the ADC/SD board header, with the white wire on pin 1.
   Servo_Pin = 1
-
+  BEC_Plus  = 3 'Battery eliminator circuit power supply.  not used, but should be set to input (high impedance)
+  BEC_Minus = 5 'Battery eliminator circuit power supply.  not used, but should be set to input (high impedance)
 
   'CONSTANTS FOR FLAGS AND BUFFERS
   'buffer size
@@ -59,13 +62,13 @@ OBJ
   adc : "MCP3208"  ' ADC
   sd  : "fsrw"   ' SD card file system (fsrw 2.6)
   pst : "Parallax Serial Terminal"  ' debugging via USB cable to serial terminal
-  
+
 VAR
   'motor control variable
   long speed   ' 80000 -> ESC off, 86857 -> 1500rpm -> 25 Hz -> 50 Hz for cover/uncover cycle of mill electrodes
 
   'flags for four buffers respectively, either hold value _full, or _written
-  byte bufflag_1 
+  byte bufflag_1
   byte bufflag_2
   byte bufflag_3
   byte bufflag_4
@@ -90,7 +93,6 @@ PUB main
     writeFile
     pst.str(string("done!"))
     pst.str(string(13,10))
-
 
   shutdown  'and shutdown.
 
