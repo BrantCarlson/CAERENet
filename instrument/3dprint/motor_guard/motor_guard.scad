@@ -1,6 +1,10 @@
 difference(){
   union(){
-    difference(){cylinder(r=32+0.8,h=45); translate([0,0,-1])cylinder(r=32,h=48);}
+    difference(){
+      union(){cylinder(r=32+0.8,h=45); cylinder(r1=34.8,r2=32.8,h=3);}
+      translate([0,0,3])cylinder(r=32,h=48);
+      translate([0,0,-0.1])cylinder(r1=30,r2=32,h=3.2);
+    }
     difference(){cylinder(r=36.8,h=0.8); translate([0,0,-1])cylinder(r=28,h=48);}
   }
   translate([0,0,-10]) cube([50,50,100]);
