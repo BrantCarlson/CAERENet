@@ -77,16 +77,15 @@ Wiring to 12-pin connector with Belkden M 9536 cable (7 wires, no SPI)
 - pin 11: brown
 - pin 12: green
 
-
-FINISH ASSEMBLY Todo:
-- make cables for connection to power supply
-- revise code to work without RPi connected
-- program propeller
-
 Current source issues
 =====================
 It doesn't work...  the voltage on the +12V power rail at the ESC drops a LOT when the ESC powers up and wants to start the motor, so the ESC either gives up (thinking there's a dead battery) or otherwise cannot make the motor respond.
 
 Two possible issues here...
-- too much resistance in the wires, so the amount of current the ESC wants will make the voltage drop too much.  Diagnostic: measure resistance of the power rail, se how big it is.  Measure voltage drop over wire, infer current, determine if voltage drop is due to resistive losses over the wire or due to power supply not being able to source enough current.  Solution: separate power cable and connector for the ESC power +12 and ground, thicker wires to decrease resistance.  Add a big-ass capacitor inside the instrument.
+- too much resistance in the wires, so the amount of current the ESC wants will make the voltage drop too much.  Diagnostic: measure resistance of the power rail (0.9 ohms... not too bad).  Measure voltage drop over wire, infer current, determine if voltage drop is due to resistive losses over the wire or due to power supply not being able to source enough current.  Solution: separate power cable and connector for the ESC power +12 and ground, thicker wires to decrease resistance.  Add a big-ass capacitor inside the instrument.
 - not enough juice from the power supply.  Diagnostic: measure voltage drop at the power supply, see if it's a significant portion of the voltage drop.  Check current ratings on the various lines, see if it's sufficient.  Solution: tie multiple yellow wires (+12V) together to avoid built-in current limits, include more power supply sources (i.e. capacitors) to provide more juice.  Add a load resistance to draw power from the +5V or +12V rail, since switching power supplies need at least _some_ load to provide stable power.  
+
+Nope.  Turns out it's neither of these possibilities...
+
+ESC issues
+==========

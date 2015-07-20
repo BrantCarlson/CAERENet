@@ -52,7 +52,7 @@ No SPI communication in this one.
   buflen = 1024
   buflen_bytes = buflen * 2   'designates number of bytes in buffer, (buffer of words)
 
-  maxbufctr = 100
+  maxbufctr = 1000
 
   'buffer state flags
   _full = 0     ' buffer has been filled from ADC
@@ -104,7 +104,7 @@ PUB Startup | insert_card
 
   pst.Start(115_200)     'start Parallax Serial Terminal
 
-  waitcnt(2*clkfreq + cnt)  ' wait 5 seconds for PST startup on computer
+  waitcnt(5*clkfreq + cnt)  ' wait 5 seconds for PST startup on computer
 
   bufctr := 0
   bufflag_1 := _written     'initializes flags to _written, signifying they are ready to be filled from ADC channels
@@ -117,6 +117,8 @@ PUB Startup | insert_card
   
   speed := 80_000                   'sets esc to idle
   servo_cog := cognew(@SingleServo,@speed)       'opens new cog for ESC
+
+  waitcnt(2*clkfreq + cnt)  ' wait 5 seconds for PST startup on computer
 
   pst.str(string("starting ADC"))
   pst.str(string(13,10))
@@ -152,7 +154,7 @@ PUB shutdown | i
   speed := 80_000                       'sets esc to idle
 
   cogstop(reader_cog)            'shutdown cogs
-  cogstop(servo_cog)
+  'cogstop(servo_cog)
 
   sd.unmount                'unmount sd card
 
