@@ -24,17 +24,17 @@ def readArray(filename,num_ints=np.inf,start_int=0):
 def splitData(x,b=1024):
     """Split data into start clock, end clock, and three channels according to a given buffer size (default 1024).  Returns a dictionary with keys 'start', 'end', 'd0', 'd1', and 'd2'"""
     n = x.shape[0]
-    s = np.delete(x,np.arange(b-1,n,b)) # drop ends
-    s = np.delete(s,np.arange(0,n-1,b-1)) # drop starts
-    sr = s.reshape(-1,b-2)
-    return {'start':x[0::b],
-            'end':x[(b-1)::b],
-            'd0':sr[:,0::3].reshape(-1),
-            'd1':sr[:,1::3].reshape(-1),
-            'd2':sr[:,2::3].reshape(-1)}
+    x = x.reshape(-1,b)
+    start = x[:,1]*2**16 + x[:,0]
+    end = x[:,-1]*2**16 + x[:,-2]
+    return {'start':start,
+            'end':end,
+            'd0':x[:,2:-2:3].reshape(-1),
+            'd1':x[:,3:-2:3].reshape(-1),
+            'd2':x[:,4:-2:3].reshape(-1)}
 
 def makeTimedDataFrame(d):
-    """Calculates timing information, makes 3 Pandas data frames, one for each channel.  returns a dictionary with keys 0, 1, and 2.  
+    """Calculates timing information, makes 3 Pandas data frames, one for each channel.  returns a dictionary with keys 0, 1, and 2.
     Entries of dictionaries are data frames with columns 't' and 'adc'."""
     nb = d['start'].shape[0] # number of buffers
     n0 = d['d0'].shape[0]/nb # number of channel 0 samples per buffer

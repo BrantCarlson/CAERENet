@@ -18,3 +18,6 @@
 # ignore freecad backup files
 *.fcstd1
 *.FCStd1
+
+# ignore vim temp files
+*.swp
