@@ -166,36 +166,37 @@ PUB shutdown | i
 PUB reader | i
   repeat
     if bufflag_1 == _written  'if buffer has been analyzed/_written from if deemed appropriate, enter loop
-      buffer_1[0] := cnt            
-      repeat i from 1 to (buflen-1) step 3   'incrementing i in steps of 3 since three channels on ADC, 1,2, and photogate
+      'buffer_1[0] := cnt
+      long[@buffer_1][0] := cnt
+      repeat i from 1 to (buflen-2) step 3   'incrementing i in steps of 3 since three channels on ADC, 1,2, and photogate
         buffer_1[i] := adc.in(0)          'read from particular ADC channel into respective buffer index
         buffer_1[i+1] := adc.in(1)                        '(adc.in(channel))
         buffer_1[i+2] := adc.in(2)
-      buffer_1[buflen-1] := cnt
+      long[@buffer_1][buflen/2-1] := cnt
       bufflag_1 := _full            '_full indicates buffer _full of new data to be analyzed
     if bufflag_2 == _written
-      buffer_2[0] := cnt               'repeat process for three other buffers...
-      repeat i from 1 to (buflen-1) step 3
+      long[@buffer_2][0] := cnt
+      repeat i from 1 to (buflen-2) step 3
         buffer_2[i] := adc.in(0)
         buffer_2[i+1] := adc.in(1)
         buffer_2[i+2] := adc.in(2)
-      buffer_2[buflen-1] := cnt              'need to decide what to do for initializing and capping buffers, buffers...
-      bufflag_2 := _full                                  '...are buffers of words, "cnt" is a long, what is the consequence of...
-    if bufflag_3 == _written                                   '...using a long where the objects of the buffers are words?
-      buffer_3[0] := cnt
-      repeat i from 1 to (buflen-1) step 3
+      long[@buffer_2][buflen/2-1] := cnt
+      bufflag_2 := _full
+    if bufflag_3 == _written
+      long[@buffer_3][0] := cnt
+      repeat i from 1 to (buflen-2) step 3
         buffer_3[i] := adc.in(0)
         buffer_3[i+1] := adc.in(1)
         buffer_3[i+2] := adc.in(2)
-      buffer_3[buflen-1] := cnt
+      long[@buffer_3][buflen/2-1] := cnt
       bufflag_3 := _full
     if bufflag_4 == _written
-      buffer_4[0] := cnt
-      repeat i from 1 to (buflen-1) step 3
+      long[@buffer_4][0] := cnt
+      repeat i from 1 to (buflen-2) step 3
         buffer_4[i] := adc.in(0)
         buffer_4[i+1] := adc.in(1)
         buffer_4[i+2] := adc.in(2)
-      buffer_4[buflen-1] := cnt
+      long[@buffer_4][buflen/2-1] := cnt
       bufflag_4 := _full
 
 PUB writeFile
