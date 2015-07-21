@@ -76,6 +76,7 @@ VAR
 
   'sd flag: open, opening, closing, closed
   long bufctr 'number of buffers written
+  long filectr
 
   long cogstack[150] 'designating space for cog startup
   long reader_cog, comm_cog, servo_cog
@@ -89,11 +90,13 @@ VAR
 PUB main
   Startup  'initialize things
 
-  repeat while filename < "f"
+  filectr := 0
+  repeat while filectr < 6
     pst.str(string("writing... "))
     writeFile
     pst.str(string("done!"))
     pst.str(string(13,10))
+    filectr := filectr + 1
 
   shutdown  'and shutdown.
 
@@ -199,6 +202,19 @@ PUB reader | i
       long[@buffer_4][buflen/2-1] := cnt
       bufflag_4 := _full
 
+PRI increment(address,length)
+' address is the starting address of the byte array for the string
+' length is the total length of the byte array including the zero byte that marks the end of the string
+  address += length - 2   ' Change the address so it points to the rightmost digit of the numeric value.
+  repeat
+    result := byte[address]   ' Use the implicit result variable for a temporary variable
+    if result => "0" and result =< "9"   ' Check to make sure there's a digit character there
+      byte[address] := ++result   ' Increment the character
+      if result > "9"
+        byte[address--] := "0"  ' If greater than "9", set to zero and carry a one
+        next   ' Repeat the loop
+    quit
+
 PUB writeFile
   bufctr := 0
   sd.popen(@filename, "w") 'open file on sd for writing to, filename correpsonds to file name A-Z
@@ -229,7 +245,8 @@ PUB writeFile
   pst.str(string(13,10))
         
   sd.pclose
-  filename := filename+1   'increment file name
+  'filename := filename+1   'increment file name
+  increment(@filename,5)
 
 DAT
 ' NOTE WELL: edited by a programmer who doesn't know what he's doing (BEC).  verify that this works.
@@ -269,7 +286,7 @@ counter       res                         'Reserve one long of cog RAM for this 
 HighTime      res                         'Reserve one long of cog RAM for this "HighTime" variable
               fit                         'Makes sure the preceding code fits within cells 0-495 of the cog's RAM
 
-filename      byte      "a",0
+filename      byte      "0000",0
 
 {{
 
