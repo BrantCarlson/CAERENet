@@ -1,18 +1,25 @@
 Noise tests
 ===========
 
-Some initial things to try to measure/diagnose/reduce noise...
-- box open vs closed
-- electrodes exposed vs covered with grounded sheet
-- power supply with load 30ohm load resistor or not
-- near laptop or not
+Procedure
+- take data with no_spi code
+- copy to testdata directory
+- examine last few seconds (see noiseAnalysis.ipynb)
+- compare various cases by power spectrum, RMS, presence/absence of spikes, etc.
 
-Files in testdat subdir:
-- C (box closed), c (box open)
-- E (electrodes exposed), e (electrodes partially covered with grounded plate)
-- R (load resistor in place), r (no load resistor)
-- L (laptop nearby), l (laptop not nearby)
+Things to try:
+- run several times to get a baseline
+- remove serial terminal communications code
+- move laptop away
+- with/without power supply load resistor
+- cover rotor
+- remove rotor
+- disconnect electrodes
+- leave motor stopped
+- unpower ESC
+- disable servo code
+- disconnect photogate
+- add sheet metal inside box to isolate preamp
 
-
-
-box closed, electrodes exposed, load resistor in place, near laptop --> CERL
+Data files:
+- repeatability: orig_1, orig_2, orig_3
