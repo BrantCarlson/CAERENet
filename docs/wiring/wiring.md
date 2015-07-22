@@ -93,3 +93,8 @@ ESC Issues
 Nevermind, it's not either of the above issues.  The ESCs need to be calibrated for the endpoints of the throttle the first time through, or at least that's what I think is going on.  The procedure I had to follow to get the ESCs working was to hook them up to the propeller programmed with the esc_cal code and hooked up to the USB.  Start the program, then wait until the PWM is active, then power on the ESC.  The ESC should enter calibration mode.  As soon as the ESC starts beeping, turn the servo PWM to idle.  The ESC should acknowledge this and stop the calibration.  Once you've done this, power cycle the ESC with the PWM to idle, and increasing the servo width from there should make the motor turn.
 
 Or something like that.  If you need to make the ESC go back into calibration mode, it might work to increase the pulse width above the 160000 cycles that would normally be "max".  Otherwise, the ESC should enter calibration mode by powering it on with the servo PWM at maximum width.
+
+
+NOTE:
+=====
+FIX schematic...  Resistors near regulator are swapped off!
