@@ -64,7 +64,7 @@ No SPI communication in this one.
 OBJ
   adc : "MCP3208"  ' ADC
   sd  : "fsrw"   ' SD card file system (fsrw 2.6)
-  pst : "Parallax Serial Terminal"  ' debugging via USB cable to serial terminal
+  'pst : "Parallax Serial Terminal"  ' debugging via USB cable to serial terminal
 
 VAR
   'motor control variable
@@ -94,10 +94,10 @@ PUB main
 
   filectr := 0
   repeat while filectr < numfiles
-    pst.str(string("writing... "))
+    'pst.str(string("writing... "))
     writeFile
-    pst.str(string("done!"))
-    pst.str(string(13,10))
+    'pst.str(string("done!"))
+    'pst.str(string(13,10))
     filectr := filectr + 1
 
   shutdown  'and shutdown.
@@ -107,7 +107,7 @@ PUB Startup | insert_card
   dira[IndicatorLED] := %1  'set indicator LED pin as output
   outa[IndicatorLED] := %1  ' and turn the LED on
 
-  pst.Start(115_200)     'start Parallax Serial Terminal
+  'pst.Start(115_200)     'start Parallax Serial Terminal
 
   waitcnt(5*clkfreq + cnt)  ' wait 5 seconds for PST startup on computer
 
@@ -117,44 +117,44 @@ PUB Startup | insert_card
   bufflag_3 := _written
   bufflag_4 := _written
 
-  pst.str(string("starting ESC"))
-  pst.str(string(13,10))
+  'pst.str(string("starting ESC"))
+  'pst.str(string(13,10))
   
   speed := 80_000                   'sets esc to idle
   servo_cog := cognew(@SingleServo,@speed)       'opens new cog for ESC
 
   waitcnt(2*clkfreq + cnt)  ' wait 5 seconds for PST startup on computer
 
-  pst.str(string("starting ADC"))
-  pst.str(string(13,10))
+  'pst.str(string("starting ADC"))
+  'pst.str(string(13,10))
   
   adc.start(ADC_DPIN,ADC_CPIN,ADC_SPIN,7)          'starts adc chip, 7 corresponds to mode parameter, (see MCP3208)
 
-  pst.str(string("starting SD card"))
-  pst.str(string(13,10))
+  'pst.str(string("starting SD card"))
+  'pst.str(string(13,10))
 
   insert_card := \sd.mount_explicit(SD_D0, SD_CLK, SD_DI, SD_CS)      'mount sd card or abort, see "abort trap" in propeller manual
   if insert_card < 0
-    pst.str(string("problem with SD card mount!"))
-    pst.str(string(13,10))
+    'pst.str(string("problem with SD card mount!"))
+    'pst.str(string(13,10))
     abort
 
-  pst.str(string("SD card mounted."))
-  pst.str(string(13,10))
+  'pst.str(string("SD card mounted."))
+  'pst.str(string(13,10))
 
   speed := 84_800  'starts ESC, 86857=1500rpm
 
-  pst.str(string("starting reader"))
-  pst.str(string(13,10))
+  'pst.str(string("starting reader"))
+  'pst.str(string(13,10))
 
   reader_cog := cognew (reader, @cogstack[0])
 
-  pst.str(string("startup completed"))
-  pst.str(string(13,10))
+  'pst.str(string("startup completed"))
+  'pst.str(string(13,10))
 
 PUB shutdown | i
-  pst.str(string("shutting down"))
-  pst.str(string(13,10)) 
+  'pst.str(string("shutting down"))
+  'pst.str(string(13,10)) 
   
   speed := 80_000                       'sets esc to idle
 
@@ -163,8 +163,8 @@ PUB shutdown | i
 
   sd.unmount                'unmount sd card
 
-  pst.str(string("shut down complete. SD card safe to remove."))
-  pst.str(string(13,10)) 
+  'pst.str(string("shut down complete. SD card safe to remove."))
+  'pst.str(string(13,10)) 
   
   outa[IndicatorLED] := %0 ' turn indicator LED off
 
@@ -223,9 +223,9 @@ PUB writeFile
   bufctr := 0
   sd.popen(@filename, "w") 'open file on sd for writing to, filename correpsonds to file name A-Z
 
-  pst.str(string(13,10))
-  pst.str(string("file opened..."))
-  pst.str(string(13,10))
+  'pst.str(string(13,10))
+  'pst.str(string("file opened..."))
+  'pst.str(string(13,10))
 
   repeat while bufctr < maxbufctr
     if bufflag_1 == _full   'if buffer is _full and file == open, write buffer to sd card
@@ -245,8 +245,8 @@ PUB writeFile
       bufflag_4 := _written
       bufctr := bufctr + 1
 
-  pst.str(string("buffers written..."))
-  pst.str(string(13,10))
+  'pst.str(string("buffers written..."))
+  'pst.str(string(13,10))
         
   sd.pclose
   'filename := filename+1   'increment file name
