@@ -82,14 +82,45 @@ I think the cause here is supply fluctuations on the Vref of the ADC chip.  Ther
 As a fix, the current draw on Iref is around 0.1 mA, which is not so bad, so I might try adding some sort of filter to the board.
 
 
-Summary
--------
+Summary so far
+--------------
 
 Noise seems to come in two main ways: when the ESC and motor are running, there are bursts that come at a rate of 72 Hz with amplitude around 10-20 ADC channels and frequency content around 3.2 kHz.  These are going to be problematic if we need to precisely measure things happening at high frequencies but will be easy to filter out if all we need is static fields.  Beneath that, there are some noise bursts that I think are due to the SD card writes affecting the reference voltage to the ADC.
 
 There's also a lot of external interference coming in when the electrodes are covered, pulses appearing at around 32 Hz.  I'm not sure why that's the case, but it doesn't really matter.  It might be worth playing around with a bit, building a better faraday cage, but it doesn't happen when the rotors are uncovered.  Odd.
 
 Beyond that, the circuit seems to be behaving itself pretty well.
+
+Attempts to eliminate motor noise
+=================================
+
+no rotor, electrodes disconnected, running upside down, load resistor on +12V (as before), lid closed: mnbase_16
+lid OPEN: mnopen_17
+lid open, load resistor on +5: mnR5_18
+scope on: mnScOn_19
+
+Poking around with the scope, there are serious noise spikes on the PHOTOGATE OUTPUT(!?) repeating at about 15.566 kHz.  Seems to be coming from the connection to the ADC, though, which is bizzare.  No noise is visible on the inputs when NOT connected to the ADC, nor is any noise visible on the ADC input pin, but somehow connecting them together... = bad.  = ground loop?  magnetic coupling?
+
+pulses from ESC to motor are large and happen around 7.8 kHz.  That's a good candidate for pickup here, since it would be aliased down to 3.something kHz.  Visual inspection via oscilloscope makes it look like that's actually not a bad hypothesis.  Yeah, it's there...  ok.  How to get around that?
+
+Randomly adding some shielding around ESC (pieces of sheet metal, alligator-wired to case...: shield0_20
+a second attempt (shield closer to prop and preamp on other side of motor than last test): shield1_21
+no real difference there with a shield.  must not be capacitive coupling.
+
+moving motor further away didn't help either (motorFar_22).
+must not be inductive coupling.
+
+Therefore, must be power supply coupling.
+Pity, since that's probably the hardest to deal with.
+
+big-ass cap (470 microfarad electrolytic) across ESC power wires at ESC: escCap_23
+no improvement.
+
+big-ass caps at input to preamp power supply: preCap_24
+
+pulses from power supply are around 122 kHz
+
+
 
 Plan 
 ====
