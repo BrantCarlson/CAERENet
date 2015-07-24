@@ -52,9 +52,13 @@ No SPI communication in this one.
   buflen = 1024
   buflen_bytes = buflen * 2   'designates number of bytes in buffer, (buffer of words)
 
-  maxbufctr = 1000 ' number of buffers per file
+  maxbufctr = 120000
+  ' number of buffers per file.
+  ' 1000 = ~30 seconds of data per file, 2 MB file size.
+  ' 120000 = ~2 hours, 240 MB file size.
+  ' 240000 = ~2 hours, 480 MB file size.
 
-  numfiles = 1
+  numfiles = 48
 
   'buffer state flags
   _full = 0     ' buffer has been filled from ADC

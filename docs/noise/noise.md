@@ -117,15 +117,44 @@ big-ass cap (470 microfarad electrolytic) across ESC power wires at ESC: escCap_
 no improvement.
 
 big-ass caps at input to preamp power supply: preCap_24
+slight improvement.
 
-pulses from power supply are around 122 kHz
+Trying separate power wire for ESC (load resistor removed): escSep_25
+helped a lot.  double-checking, back to old power wire: escNotSep_26
+back to separate power wire: escSep_27
 
+Structure in power spectrum due to 7.8 kHz ESC pulses aliased down into spectrum now greatly reduced, 13 db lower than before.
 
+Pulses are still there, but they're down at the level of the SD-card-write noise.
 
-Plan 
+Fix
+---
+
+wired up second power wire, drilled third hole, used second 3-pin connector to get power in: twowires_28
+
+seems to work fine.
+
+Data Tests
+==========
+
+instrument assembled again, electrodes connected again, no rotor: norot_29
+rotor re-attached: decided to let it stall and complete: stall_30
+with a push to get started: run_31
+with an E-field: runWithE_32
+
+swapped lt1097s out for LM741s, still with E-field: lm741E_33
+nothing.  hm.  no signal at all.
+
+back to the LT1097...  backToNormal_34
+one channel was flatlining, turned out the electrode had come unplugged.  I should work out some better way to keep them connected.  proper data --> overwrote backToNormal_34.
+
+Plan
 ====
+Weekend:
+- take a serious amount of data.  Started at 5:00PM Friday night.
 
 Some things to try:
-- isolate the preamp and its signal wires from the motor/ESC.
-- add a regulator and/or a filter to the ADC Vref.
 - work out why gain is unequal in two channels.  urgh.  friggen preamp...
+- work out why LM741s didn't get anything.  Were they saturated?
+- work out why wave shape is not a straight-up triangle.  Resembles the same distortion as I saw in the LT1097s when I ran them as voltage followers.  What gives?
+- add a regulator and/or a filter to the ADC Vref.
