@@ -1,0 +1,12 @@
+"Qty";"Value";"Device";"Package";"Parts";"Description";"MF";"MPN";"OC_FARNELL";"OC_NEWARK";
+"1";"";"FE05-1";"FE05-1";"SL1";"FEMALE HEADER";"";"";"unknown";"unknown";
+"1";"";"MA06-2";"MA06-2";"SV1";"PIN HEADER";"";"";"unknown";"unknown";
+"1";"";"MA20-2";"MA20-2";"SV3";"PIN HEADER";"";"";"unknown";"unknown";
+"1";"";"PINHD-1X2";"1X02";"JP2";"PIN HEADER";"";"";"";"";
+"1";"0.1uF";"C-USC0402";"C0402";"C1";"CAPACITOR, American symbol";"";"";"";"";
+"8";"10k";"R-US_R0603";"R0603";"R1, R2, R3, R4, R5, R6, R7, R8";"RESISTOR, American symbol";"";"";"";"";
+"5";"1uF";"C-USC0402";"C0402";"C2, C3, C4, C5, C6";"CAPACITOR, American symbol";"";"";"";"";
+"1";"MC1541TT";"MC1541TT";"SOT23";"IC2";"2.5V and 4.096V Voltage References";"";"";"unknown";"unknown";
+"1";"MCP1700T";"MCP1700T";"SOT23";"U$2";"";"";"";"";"";
+"1";"MCP3208";"21298EDIP";"DIP16";"X1";"";"";"";"";"";
+"1";"SD_1.0";"SD_1.0";"SD_1.0";"U$1";"";"";"";"";"";

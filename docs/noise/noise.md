@@ -208,6 +208,17 @@ Adding the same big cap between +5 and digital ground does not.
 
 Ok, I give up.  Let's just locally reinforce digital ground.
 
+SD card interference interpretation and testing
+-----------------------------------------------
+
+The basic idea: if you deposit a net charge on an object surrounded by a conducting shell, the inner surface of the conducting shell will accumulate the same charge as you've deposited on the interior object.  If the conducting shell is to remain neutral, which it will, at least on the sort of timescale necessary to draw charge into or off of the shell through whatever cables are connected, the outside of the shell will accumulate some charge as well.  That accumulation might be picked up by the preamp somehow.  Maybe.
+
+Testing this idea: put a conducting plate inside the box, wired up to a signal generator, and oscillate its potential.  That should push some charge in and out of the box, which might produce the same sort of signal...
+... and...?
+no signal appears unless the plate is positioned such that it's easy to imagine its elcetric field reaching the electrodes.  Ok, then.
+
+Remaining ideas?  None whatsoever.
+
 Simulations
 ===========
 

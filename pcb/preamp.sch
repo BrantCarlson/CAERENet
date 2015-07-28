@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="6.6.0">
+<eagle version="7.3.0">
 <drawing>
 <settings>
 <setting alwaysvectorfont="no"/>
@@ -12226,10 +12226,10 @@ Source: AVX .. aphvc.pdf</description>
 <part name="SUPPLY5" library="supply2" deviceset="-10V" device=""/>
 <part name="SUPPLY6" library="supply2" deviceset="+10V" device=""/>
 <part name="GND1" library="supply1" deviceset="GND" device=""/>
-<part name="R1" library="resistor" deviceset="R-US_" device="0204/5" value="470"/>
-<part name="R2" library="resistor" deviceset="R-US_" device="0204/5" value="3.3k"/>
-<part name="R3" library="resistor" deviceset="R-US_" device="0204/5" value="470"/>
-<part name="R4" library="resistor" deviceset="R-US_" device="0204/5" value="3.3k"/>
+<part name="R1" library="resistor" deviceset="R-US_" device="0204/5" value="3.3k"/>
+<part name="R2" library="resistor" deviceset="R-US_" device="0204/5" value="470"/>
+<part name="R3" library="resistor" deviceset="R-US_" device="0204/5" value="3.3k"/>
+<part name="R4" library="resistor" deviceset="R-US_" device="0204/5" value="470"/>
 <part name="R8" library="resistor" deviceset="R-US_" device="0204/5" value="1.6k"/>
 <part name="R9" library="resistor" deviceset="R-US_" device="0204/5" value="16.2k"/>
 <part name="R10" library="resistor" deviceset="R-US_" device="0204/5" value="7.9k"/>
@@ -12664,9 +12664,9 @@ Source: AVX .. aphvc.pdf</description>
 </net>
 <net name="1FILTERC" class="0">
 <segment>
-<label x="154.94" y="87.376" size="1.778" layer="95" rot="R180" xref="yes"/>
+<label x="154.94" y="84.836" size="1.778" layer="95" rot="R180" xref="yes"/>
 <pinref part="U3" gate="A" pin="-IN_D"/>
-<wire x1="170.18" y1="83.82" x2="154.94" y2="87.376" width="0.1524" layer="91"/>
+<wire x1="170.18" y1="83.82" x2="154.94" y2="84.836" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="R11" gate="G$1" pin="2"/>
@@ -12680,9 +12680,9 @@ Source: AVX .. aphvc.pdf</description>
 </net>
 <net name="OFFSET" class="0">
 <segment>
-<label x="154.94" y="83.82" size="1.778" layer="95" rot="R180" xref="yes"/>
+<label x="154.94" y="88.9" size="1.778" layer="95" rot="R180" xref="yes"/>
 <pinref part="U3" gate="A" pin="+IN_D"/>
-<wire x1="170.18" y1="86.36" x2="154.94" y2="83.82" width="0.1524" layer="91"/>
+<wire x1="170.18" y1="86.36" x2="154.94" y2="88.9" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <label x="139.7" y="66.04" size="1.778" layer="95" rot="R90" xref="yes"/>
