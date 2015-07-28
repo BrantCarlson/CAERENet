@@ -148,13 +148,79 @@ nothing.  hm.  no signal at all.
 back to the LT1097...  backToNormal_34
 one channel was flatlining, turned out the electrode had come unplugged.  I should work out some better way to keep them connected.  proper data --> overwrote backToNormal_34.
 
-Plan
-====
-Weekend:
-- take a serious amount of data.  Started at 5:00PM Friday night.
+Pulses in data when actually collecting
+=======================================
 
-Some things to try:
-- work out why gain is unequal in two channels.  urgh.  friggen preamp...
-- work out why LM741s didn't get anything.  Were they saturated?
-- work out why wave shape is not a straight-up triangle.  Resembles the same distortion as I saw in the LT1097s when I ran them as voltage followers.  What gives?
+Those spikes in coverRot_6, noRotElCov_8 turned up in the actual data as well...  What do I know?
+- channels respond unequally
+- spike occurs once per buffer
+- spike does NOT occur when electrodes are not connected
+- spike is NOT synchronized with photogate
+
+Moving on to data in pulsetestdata
+- 01_orig: nothing edited, rotor removed, grounded metal sheet in front of electrode, connected to box, box open.  pulses visible.  bigger in channel 2 than channel 1.
+- 02_inputSwap: swapped INPUTs to preamp.  pulses now bigger in channel 1 than channel 2.  WTF!
+- 03_electrodesUnplugged: pulses gone.
+
+Checking connections...  turns out one electrode just isn't connected.  Wires soldered to jack are soldered to the wrong pins.  Disassembling plug suggests a transient short might have been present thanks to a flake of shield bridging from ground/shield to signal.  Needs to be fixed, regardless...  Pinout from plug:
+- pin 1: ground/shield
+- pin 2: black wire (electrode)
+- pin 3: red wire (electrode)
+
+Pinout from jack, resoldering:
+- pin 1: ~~red wire inside case~~ --> NC
+- pin 2: blue wire inside case
+- pin 3: ~~NC~~ --> red wire inside case
+
+After re-wiring, sanity check:
+- 04_rewired: whew.  pulses now show up equally on both channels.
+
+Reprogrammed to run for an hour, to poke around with the scope...
+spikes are visible on scope if you monitor input to ADC
+rewriting code to remove SD card writing...
+- SPIKES GO AWAY!?!
+rewriting code to only write one of four buffers...
+- spikes are back but there are fewer of them.
+
+back to writing all 4 buffers to make timing easier to spot and poking around more...
+- dips with correct timing are visible on +5 power rail.  slight, but visible.
+- noise with correct timing is visible on preamp INPUT!
+
+leaving motor idle...
+ok, lost the signal...
+trying to get it back... huh?
+SD card noise seems gone (huh?!) but now there are pulses with around 532 ms period.
+disconnecting SD card momentarily stops the pulses (also probably crashes the SD card)...
+attempting to rearrange preamp to get better access makes pulses smaller...  turns out to be the longer wires connecting electrodes to inputs...  no, not really?
+
+poking around...
+
+physical proximity of propeller to normal mounting position seems to affect amplitude of pulses.  farther away = smaller amplitude.
+
+connecting ch2 input to electrode affects amplitude of ch1 pulses?  makes sense...  connecting ch2 electrode to virtual ground should limit static pickup.
+
+ensuring good connection between SD card shield and CASE NEAR SD CARD with a SHORT wire makes noise go away almost completely.
+but why?
+what coupling does that remove?  magnetic coupling doesn't make any sense.  moving WIRES around doesn't matter.  Power supply coupling is out right away, since pulses are not visible when electrodes are disconnected.  processes are way too slow for electrodynamics...  30 ms pulse period ~ 8 Mm wavelength.  nonsense.  electrostatic coupling is the only remaining option, but ...  signals getting in the ELECTRODES from the propeller side?  hmph.
+
+Adding a big electrolytic capacitor from +5V to case at the propeller +5V input also reduces noise.
+Adding the same big cap between +5 and digital ground does not.
+
+Ok, I give up.  Let's just locally reinforce digital ground.
+
+Simulations
+===========
+
+One thing that's bugged me: wave shape is not a pure triangle wave, looks a bit saw-tooth-y.  Why?
+Probably it's just some property of the circuit, but...  just to double-check that nothing's broken, I re-did Mike's LTspice simulations (see preampSim.asc in the PCB directory).
+
+Simulation results verify that the saw-tooth wave output is expected, so the circuit is behaving as designed.  Not exactly as intended, perhaps.  The amplitude response is not exactly flat over the pass band, has a bit of a resonance peak near the upper end of the pass band, and the phase response is not particularly linear.  Perhaps this is due for a redesign?
+
+
+Plan / TODO
+===========
+
+- fix schematics for resistor placement (? or did I already do that?  check the regulators)
 - add a regulator and/or a filter to the ADC Vref.
+- redesign preamp to flatten amplitude response, linearize phase response.
+
