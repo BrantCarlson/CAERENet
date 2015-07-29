@@ -12230,7 +12230,7 @@ Source: AVX .. aphvc.pdf</description>
 <part name="R2" library="resistor" deviceset="R-US_" device="0204/5" value="470"/>
 <part name="R3" library="resistor" deviceset="R-US_" device="0204/5" value="3.3k"/>
 <part name="R4" library="resistor" deviceset="R-US_" device="0204/5" value="470"/>
-<part name="R8" library="resistor" deviceset="R-US_" device="0204/5" value="1.6k"/>
+<part name="R8" library="resistor" deviceset="R-US_" device="0204/5" value="22k"/>
 <part name="R9" library="resistor" deviceset="R-US_" device="0204/5" value="16.2k"/>
 <part name="R10" library="resistor" deviceset="R-US_" device="0204/5" value="7.9k"/>
 <part name="R5" library="resistor" deviceset="R-US_" device="0204/7" value="560k"/>
@@ -12256,7 +12256,7 @@ Source: AVX .. aphvc.pdf</description>
 <part name="SUPPLY11" library="supply2" deviceset="+10V" device=""/>
 <part name="SUPPLY12" library="supply2" deviceset="-10V" device=""/>
 <part name="C6" library="resistor" deviceset="C-US" device="050-030X075" value="10uF"/>
-<part name="R18" library="resistor" deviceset="R-US_" device="0204/5" value="1.6k"/>
+<part name="R18" library="resistor" deviceset="R-US_" device="0204/5" value="22k"/>
 <part name="GND8" library="supply1" deviceset="GND" device=""/>
 <part name="R19" library="resistor" deviceset="R-US_" device="0204/5" value="7.9k"/>
 <part name="C11" library="resistor" deviceset="C-US" device="050-024X044" value=".015uF"/>

@@ -227,11 +227,29 @@ Probably it's just some property of the circuit, but...  just to double-check th
 
 Simulation results verify that the saw-tooth wave output is expected, so the circuit is behaving as designed.  Not exactly as intended, perhaps.  The amplitude response is not exactly flat over the pass band, has a bit of a resonance peak near the upper end of the pass band, and the phase response is not particularly linear.  Perhaps this is due for a redesign?
 
+Old values, from Mike's circuit:
+first resistor: 7.9kOhm
+second resistor: 16.2kOhm
+first cap (feedback): 0.15uF
+second cap (to ground): 3.3nF
+
+These values produce a resonance around 1 kHz.  That is bad.
+
+Using Analog Devices's calculator: http://www.analog.com/designtools/en/filterwizard/#/type
+Setting the cutoff frequency around 1kHz and optimizing for "low noise"...
+first resistor: 1.19kOhm
+second resistor: 21.3kOhm
+first cap (feedback): 100nF
+second cap (to ground): 10nF
+(resistors are 1% tolerance, capacitors are 5%)
+
+Using these values, there is no resonance.  This is good.
+
+The pulse shape effect is still there, though, since that's coming from the high-pass filter just after the preamp.  That needs to have a lower cutoff frequency, or to be converted to a low-pass with a >1kHz cutoff to contribute more to the anti-aliasing.
+
+Let's change the cutoff frequency so it causes less distortion.  I.e. swap the 1.8kOhm resistor for a 22kOhm resistor.  Will get a bit more low-frequency noise from the preamp, but since interference is more of an issue than intrinsic noise, that shouldn't be a problem.
 
 Plan / TODO
 ===========
 
-- fix schematics for resistor placement (? or did I already do that?  check the regulators)
-- add a regulator and/or a filter to the ADC Vref.
-- redesign preamp to flatten amplitude response, linearize phase response.
-
+DATA taking: 7/28/2015, started at 5:38.

@@ -41,39 +41,39 @@ def makeTimedDataFrame(d):
     n1 = d['d1'].shape[0]/nb # likewise for channel 1
     n2 = d['d2'].shape[0]/nb # likewise for channel 2
     bl = n0+n1+n2+2 # buffer length (i.e. 1024)
-    
+
     # setup sW (start time, un-wrapped), a floating point representation of the clock, with offsets added for clock overflow / restart
     sW = np.zeros(d['start'].shape)
     sW[1:] = np.cumsum(d['start'][1:] < d['start'][0:(nb-1)])*2**32
     sW = d['start'] + sW
-    
+
     # likewise for end time, un-wrapped.
     eW = np.zeros(d['end'].shape)
     eW[1:] = np.cumsum(d['end'][1:] < d['end'][0:(nb-1)])*2**32
     eW = d['end'] + eW
-    
-    # some constants for conversion from clock time (32-bit integer) to real time (in seconds) 
+
+    # some constants for conversion from clock time (32-bit integer) to real time (in seconds)
     startDelay = 0  # number of clocks after start is written before first sample in buffer is acquired
     endDelay = 0    # likewise for clocks after last sample before end clock is written.
     clockFreq = 80.0e6 # 80 MHz clock
     startTime = sW[0]
     sampleTime = (eW[0]-sW[0])/bl # offset from sampling of channel 0 to channel 1.  should be about eW[0]-sW[0])/(buffer length
-    
+
     # set up time arrays for real time
     t0 = np.zeros(d['d0'].shape)
     t1 = np.zeros(d['d1'].shape)
     t2 = np.zeros(d['d2'].shape)
-    
+
     # fill time arrays with times interpolated between start and end unwrapped times, offset and converted to seconds.
     for i in xrange(nb):
         t0[(i*n0):((i+1)*n0)] = (np.linspace(sW[i]+startDelay,eW[i]-endDelay,n0)-startTime)/clockFreq
         t1[(i*n1):((i+1)*n1)] = (np.linspace(sW[i]+startDelay,eW[i]-endDelay,n1)-startTime+sampleTime)/clockFreq
         t2[(i*n2):((i+1)*n2)] = (np.linspace(sW[i]+startDelay,eW[i]-endDelay,n2)-startTime+2*sampleTime)/clockFreq
-    
+
     return {0:pd.DataFrame({'t':t0,'adc':d['d0']}),
             1:pd.DataFrame({'t':t1,'adc':d['d1']}),
             2:pd.DataFrame({'t':t2,'adc':d['d2']})}
-    
+
 
 def readData(filename,num_ints=np.inf,start_int=0,bufferLength=1024):
     """Reads in data, splits it into channels, and associates a time in seconds."""
@@ -169,7 +169,7 @@ def fitSegs(t1,a1,t2,a2,seglen=340): #340 comes from (1024 - 2) / 3
 def fitSegs_qnd(t1,a1,t2,a2,segLen=340):
     n = t1.shape[0]
     nseg = n/segLen
-    p = np.zeros((nseg,6+4+1)) # 6 parameters from 2-channel fit, 4 from 2-channel minmax amp and midpt, and 1 for time
+    p = np.zeros((nseg,9)) # 6 parameters from 2-channel fit, 4 from 2-channel minmax amp and midpt, and 1 for time
 
     for i in xrange(nseg):
         tmin = t1[i*segLen]
@@ -198,7 +198,7 @@ def fitSegs_qnd(t1,a1,t2,a2,segLen=340):
 
     return pd.DataFrame(p,columns=['t','min1','max1','mmm1','var1','min2','max2','mmm2','var2'])
 
-def procBigFile(filename,c1,c2,bufsize=1024,func=fitSegs):
+def procBigFile(filename,c1=1,c2=2,bufsize=1024,func=fitSegs):
     """use fitSegs_qnd for method if desired."""
     num_ints = os.stat(filename).st_size/4
     nb = num_ints/bufsize
