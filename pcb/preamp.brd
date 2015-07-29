@@ -2965,14 +2965,14 @@ design rules under a new name.</description>
 <element name="R3" library="resistor" package="0204/5" value="3.3k" x="41.91" y="40.64"/>
 <element name="R4" library="resistor" package="0204/5" value="470" x="46.99" y="38.1"/>
 <element name="R8" library="resistor" package="0204/5" value="22k" x="20.32" y="43.18"/>
-<element name="R9" library="resistor" package="0204/5" value="16.2k" x="30.48" y="43.18"/>
-<element name="R10" library="resistor" package="0204/5" value="7.9k" x="25.4" y="40.64" rot="R90"/>
+<element name="R9" library="resistor" package="0204/5" value="21.5k" x="30.48" y="43.18"/>
+<element name="R10" library="resistor" package="0204/5" value="1.19k" x="25.4" y="40.64" rot="R90"/>
 <element name="R5" library="resistor" package="0204/7" value="560k" x="3.81" y="33.02" rot="R90"/>
 <element name="R6" library="resistor" package="0204/7" value="560k" x="6.35" y="39.37" rot="R270"/>
 <element name="R7" library="resistor" package="0204/7" value="220" x="8.89" y="39.37" rot="R270"/>
 <element name="C3" library="resistor" package="C050-030X075" value="10uF" x="20.32" y="39.37"/>
-<element name="C4" library="resistor" package="C050-024X044" value=".015uF" x="33.02" y="40.64" rot="R180"/>
-<element name="C5" library="resistor" package="C025-024X044" value="3300pF" x="36.83" y="43.18"/>
+<element name="C4" library="resistor" package="C050-024X044" value="100nF" x="33.02" y="40.64" rot="R180"/>
+<element name="C5" library="resistor" package="C025-024X044" value="10n" x="36.83" y="43.18"/>
 <element name="R11" library="resistor" package="0204/5" value="2k" x="43.18" y="34.29" rot="R270"/>
 <element name="R12" library="resistor" package="0204/5" value="500" x="44.45" y="29.21" rot="R270"/>
 <element name="R15" library="resistor" package="0204/7" value="560k" x="3.81" y="16.51" rot="R270"/>
@@ -2980,10 +2980,10 @@ design rules under a new name.</description>
 <element name="R17" library="resistor" package="0204/7" value="220" x="7.62" y="10.16"/>
 <element name="C6" library="resistor" package="C050-030X075" value="10uF" x="20.32" y="10.16"/>
 <element name="R18" library="resistor" package="0204/5" value="22k" x="20.32" y="7.62"/>
-<element name="R19" library="resistor" package="0204/5" value="7.9k" x="25.4" y="10.16" rot="R270"/>
-<element name="C11" library="resistor" package="C050-024X044" value=".015uF" x="33.02" y="10.16" rot="R180"/>
-<element name="R20" library="resistor" package="0204/5" value="16.2k" x="30.48" y="7.62"/>
-<element name="C12" library="resistor" package="C025-024X044" value="3300pF" x="36.83" y="7.62"/>
+<element name="R19" library="resistor" package="0204/5" value="1.19k" x="25.4" y="10.16" rot="R270"/>
+<element name="C11" library="resistor" package="C050-024X044" value="100nF" x="33.02" y="10.16" rot="R180"/>
+<element name="R20" library="resistor" package="0204/5" value="21.5k" x="30.48" y="7.62"/>
+<element name="C12" library="resistor" package="C025-024X044" value="10nF" x="36.83" y="7.62"/>
 <element name="R21" library="resistor" package="0204/5" value="2k" x="43.18" y="13.97" rot="R90"/>
 <element name="R22" library="resistor" package="0204/5" value="500" x="44.45" y="19.05" rot="R90"/>
 <element name="JP2" library="pinhead" package="1X02" value="" x="5.08" y="25.4" rot="R270"/>

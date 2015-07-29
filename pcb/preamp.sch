@@ -12231,8 +12231,8 @@ Source: AVX .. aphvc.pdf</description>
 <part name="R3" library="resistor" deviceset="R-US_" device="0204/5" value="3.3k"/>
 <part name="R4" library="resistor" deviceset="R-US_" device="0204/5" value="470"/>
 <part name="R8" library="resistor" deviceset="R-US_" device="0204/5" value="22k"/>
-<part name="R9" library="resistor" deviceset="R-US_" device="0204/5" value="16.2k"/>
-<part name="R10" library="resistor" deviceset="R-US_" device="0204/5" value="7.9k"/>
+<part name="R9" library="resistor" deviceset="R-US_" device="0204/5" value="21.5k"/>
+<part name="R10" library="resistor" deviceset="R-US_" device="0204/5" value="1.19k"/>
 <part name="R5" library="resistor" deviceset="R-US_" device="0204/7" value="560k"/>
 <part name="R6" library="resistor" deviceset="R-US_" device="0204/7" value="560k"/>
 <part name="R7" library="resistor" deviceset="R-US_" device="0204/7" value="220"/>
@@ -12240,8 +12240,8 @@ Source: AVX .. aphvc.pdf</description>
 <part name="GND3" library="supply1" deviceset="GND" device=""/>
 <part name="C3" library="resistor" deviceset="C-US" device="050-030X075" value="10uF"/>
 <part name="GND4" library="supply1" deviceset="GND" device=""/>
-<part name="C4" library="resistor" deviceset="C-US" device="050-024X044" value=".015uF"/>
-<part name="C5" library="resistor" deviceset="C-US" device="025-024X044" value="3300pF"/>
+<part name="C4" library="resistor" deviceset="C-US" device="050-024X044" value="100nF"/>
+<part name="C5" library="resistor" deviceset="C-US" device="025-024X044" value="10n"/>
 <part name="GND5" library="supply1" deviceset="GND" device=""/>
 <part name="R11" library="resistor" deviceset="R-US_" device="0204/5" value="2k"/>
 <part name="R12" library="resistor" deviceset="R-US_" device="0204/5" value="500"/>
@@ -12258,10 +12258,10 @@ Source: AVX .. aphvc.pdf</description>
 <part name="C6" library="resistor" deviceset="C-US" device="050-030X075" value="10uF"/>
 <part name="R18" library="resistor" deviceset="R-US_" device="0204/5" value="22k"/>
 <part name="GND8" library="supply1" deviceset="GND" device=""/>
-<part name="R19" library="resistor" deviceset="R-US_" device="0204/5" value="7.9k"/>
-<part name="C11" library="resistor" deviceset="C-US" device="050-024X044" value=".015uF"/>
-<part name="R20" library="resistor" deviceset="R-US_" device="0204/5" value="16.2k"/>
-<part name="C12" library="resistor" deviceset="C-US" device="025-024X044" value="3300pF"/>
+<part name="R19" library="resistor" deviceset="R-US_" device="0204/5" value="1.19k"/>
+<part name="C11" library="resistor" deviceset="C-US" device="050-024X044" value="100nF"/>
+<part name="R20" library="resistor" deviceset="R-US_" device="0204/5" value="21.5k"/>
+<part name="C12" library="resistor" deviceset="C-US" device="025-024X044" value="10nF"/>
 <part name="GND9" library="supply1" deviceset="GND" device=""/>
 <part name="R21" library="resistor" deviceset="R-US_" device="0204/5" value="2k"/>
 <part name="R22" library="resistor" deviceset="R-US_" device="0204/5" value="500"/>
