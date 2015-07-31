@@ -59,7 +59,7 @@ No SPI communication in this one.
   ' 120000 = ~1 hour, 240 MB file size.
   ' 240000 = ~2 hours, 480 MB file size.
 
-  numfiles = 10
+  numfiles = 48
 
   'buffer state flags
   _full = 0     ' buffer has been filled from ADC
