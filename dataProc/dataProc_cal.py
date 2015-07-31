@@ -33,7 +33,7 @@ def splitData(x,b=1024):
             'd1':x[:,3:-2:3].reshape(-1),
             'd2':x[:,4:-2:3].reshape(-1)}
 
-def makeTimedDataFrame(d):
+def makeTimedDataFrame(d,t0=0.0):
     """Calculates timing information, makes 3 Pandas data frames, one for each channel.  returns a dictionary with keys 0, 1, and 2.
     Entries of dictionaries are data frames with columns 't' and 'adc'."""
     nb = d['start'].shape[0] # number of buffers
@@ -60,24 +60,24 @@ def makeTimedDataFrame(d):
     sampleTime = (eW[0]-sW[0])/bl # offset from sampling of channel 0 to channel 1.  should be about eW[0]-sW[0])/(buffer length
 
     # set up time arrays for real time
-    t0 = np.zeros(d['d0'].shape)
-    t1 = np.zeros(d['d1'].shape)
-    t2 = np.zeros(d['d2'].shape)
+    tc0 = np.zeros(d['d0'].shape)
+    tc1 = np.zeros(d['d1'].shape)
+    tc2 = np.zeros(d['d2'].shape)
 
     # fill time arrays with times interpolated between start and end unwrapped times, offset and converted to seconds.
     for i in xrange(nb):
-        t0[(i*n0):((i+1)*n0)] = (np.linspace(sW[i]+startDelay,eW[i]-endDelay,n0)-startTime)/clockFreq
-        t1[(i*n1):((i+1)*n1)] = (np.linspace(sW[i]+startDelay,eW[i]-endDelay,n1)-startTime+sampleTime)/clockFreq
-        t2[(i*n2):((i+1)*n2)] = (np.linspace(sW[i]+startDelay,eW[i]-endDelay,n2)-startTime+2*sampleTime)/clockFreq
+        tc0[(i*n0):((i+1)*n0)] = (np.linspace(sW[i]+startDelay,eW[i]-endDelay,n0)-startTime)/clockFreq + t0
+        tc1[(i*n1):((i+1)*n1)] = (np.linspace(sW[i]+startDelay,eW[i]-endDelay,n1)-startTime+sampleTime)/clockFreq + t0
+        tc2[(i*n2):((i+1)*n2)] = (np.linspace(sW[i]+startDelay,eW[i]-endDelay,n2)-startTime+2*sampleTime)/clockFreq + t0
 
-    return {0:pd.DataFrame({'t':t0,'adc':d['d0']}),
-            1:pd.DataFrame({'t':t1,'adc':d['d1']}),
-            2:pd.DataFrame({'t':t2,'adc':d['d2']})}
+    return {0:pd.DataFrame({'t':tc0,'adc':d['d0']}),
+            1:pd.DataFrame({'t':tc1,'adc':d['d1']}),
+            2:pd.DataFrame({'t':tc2,'adc':d['d2']})}
 
 
-def readData(filename,num_ints=np.inf,start_int=0,bufferLength=1024):
+def readData(filename,num_ints=np.inf,start_int=0,bufferLength=1024,t0=0.0):
     """Reads in data, splits it into channels, and associates a time in seconds."""
-    return makeTimedDataFrame(splitData(readArray(filename,num_ints=num_ints,start_int=start_int),bufferLength))
+    return makeTimedDataFrame(splitData(readArray(filename,num_ints=num_ints,start_int=start_int),bufferLength),t0=t0)
 
 def interpAlign(tdf):
   """linearly interpolates channel 1 and channel 2 to match channel 0's timing"""
@@ -166,50 +166,61 @@ def fitSegs(t1,a1,t2,a2,seglen=340): #340 comes from (1024 - 2) / 3
 
     return pd.DataFrame(p,columns=['t','m1','a1','omega','t0','m2','a2','mma1','mmm1','mma2','mmm2'])
 
-def fitSegs_qnd(t1,a1,t2,a2,segLen=340):
+def fitSegs_qnd(t0,a0,t1,a1,t2,a2,segLen=340*4): #340 = (1024 - 2(start clk storage) - 2 (end clk storage))/3 (channels per buffer)
+    """qnd = quick and dirty.  no actual fitting."""
     n = t1.shape[0]
     nseg = n/segLen
-    p = np.zeros((nseg,9)) # 6 parameters from 2-channel fit, 4 from 2-channel minmax amp and midpt, and 1 for time
+    p = np.zeros((nseg,10))
+
+    # TODO: use t0, a0 (photogate signals) to assign a polarity.
 
     for i in xrange(nseg):
-        tmin = t1[i*segLen]
-        tmax = t1[min((i+1)*segLen-1,n)]
+        i1 = i*segLen
+        i2 = min((i+1)*segLen-1,n)
+        tmin = t1.iloc[i1]
+        tmax = t1.iloc[i2]
         p[i,0] = tmin
+        p[i,1] = tmax
         if(tmax-tmin > (segLen/10000.0)*2): #if this chunk of data contains a big glitch,
             p[i,1:] = np.nan
             continue
 
-        m1 = np.logical_and(t1>tmin,t1<tmax)
-        ts1 = t1[m1]
-        as1 = a1[m1]
+        ts1 = t1.iloc[i1:i2]
+        as1 = a1.iloc[i1:i2]
+        ts2 = t2.iloc[i1:i2]
+        as2 = a2.iloc[i1:i2]
 
-        m2 = np.logical_and(t2>tmin,t2<tmax)
-        ts2 = t2[m2]
-        as2 = a2[m2]
+        p[i,2] = as1.min()
+        p[i,3] = as1.max()
+        p[i,4] = p[i,3]-p[i,2]
+        p[i,5] = as1.var()
+        p[i,6] = as2.min()
+        p[i,7] = as2.max()
+        p[i,8] = p[i,7]-p[i,6]
+        p[i,9] = as2.var()
 
-        p[i,1] = np.min(as1)
-        p[i,2] = np.max(as1)
-        p[i,3] = p[i,2]-p[i,1]
-        p[i,4] = np.var(as1)
-        p[i,5] = np.min(as2)
-        p[i,6] = np.max(as2)
-        p[i,7] = p[i,6]-p[i,5]
-        p[i,8] = np.var(as2)
+    return pd.DataFrame(p,columns=['t1','t2','min1','max1','mmm1','var1','min2','max2','mmm2','var2'])
 
-    return pd.DataFrame(p,columns=['t','min1','max1','mmm1','var1','min2','max2','mmm2','var2'])
-
-def procBigFile(filename,c1=1,c2=2,bufsize=1024,func=fitSegs):
+def procBigFile(filename,cpg=0,cch1=1,cch2=2,bufsize=1024,func=fitSegs_qnd,t0=0.0):
     """use fitSegs_qnd for method if desired."""
-    num_ints = os.stat(filename).st_size/4
-    nb = num_ints/bufsize
-    nbp = 1024*3
-    p = pd.DataFrame()
-    t0=0
-    for i in xrange(0,nb,nbp):
-        print "processing %d of %d, %f"%(i,nb,t0)
-        x = readData(filename,nbp*bufsize,i*bufsize,bufsize)
-        p2 = func(x[c1].t,x[c1].adc,x[c2].t,x[c2].adc)
-        p2.t = p2.t+t0
-        p = pd.concat([p,p2])
-        t0 = max(p2.t)  # NOTE: mistake here. proper time difference between buffers should be calculated, not fudged.
-    return p
+    num_ints = os.stat(filename).st_size/2  #NOTE: assuming 16-bit integers here!
+    nb = num_ints/bufsize # number of buffers in file
+    nbp = 1024*4 # number of BUFFERS per chunk
+    ps = []
+    for i in xrange(0,num_ints,nbp*bufsize):
+        print "processing %d of %d, %f"%(i/bufsize,num_ints/bufsize,t0)
+        x = readData(filename,nbp*bufsize,i,bufsize,t0)
+        p2 = func(x[cpg].t,x[cpg].adc,
+                x[cch1].t,x[cch1].adc,
+                x[cch2].t,x[cch2].adc)
+        ps.append(p2)
+        t0 = p2.t2.iloc[-1]+(p2.t1.iloc[2]-p2.t1.iloc[1])
+    return pd.concat(ps)
+
+def procBigFiles(fns):
+    dfs = []
+    t0 = 0.0
+    for f in fns:
+        dfs.append(procBigFile(f,t0=t0))
+        t0 = dfs[-1].t2.max()
+    return pd.concat(dfs)
